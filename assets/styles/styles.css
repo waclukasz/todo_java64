@@ -16,5 +16,22 @@
 }
 
 .app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 30px;
+}
+
+.app-date {
+  display: flex;
+  align-items: center;
+}
+
+.app-date > div:first-of-type {
+  font-size: 2.1rem;
+}
+
+.app-date > div:last-of-type {
+  display: flex;
+  flex-direction: column;
 }
