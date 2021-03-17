@@ -1,38 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="stylesheet" href="./assets/styles/reset.css">
-  <link rel="stylesheet" href="./assets/styles/styles.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-  <title>Document</title>
-</head>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
 
-<body class="main-app">
-  <main class="app-container">
-    <header class="app-header">
-      <div class="app-date">
-        <div>15</div>
-        <div>
-          <span>Mar</span>
-          <span>2021</span>
+    <link rel="stylesheet" href="./assets/styles/reset.css" />
+    <link rel="stylesheet" href="./assets/styles/styles.css" />
+    <title>Document</title>
+  </head>
+
+  <body class="main-app">
+    <main class="app-container">
+      <header class="app-header">
+        <div class="app-date">
+          <div id="dayMonth"></div>
+          <div>
+            <span id="monthName"></span>
+            <span id="year"></span>
+          </div>
+        </div>
+        <div class="app-weekday">Monday</div>
+      </header>
+
+      <ul class="todo-list"></ul>
+
+      <button class="add-task-btn">
+        <i class="fas fa-plus"></i>
+      </button>
+    </main>
+
+    <div id="modal" class="modal-overlay hidden">
+      <div class="modal-container">
+        <button class="close-btn">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2 class="add-task-header">Type your task!</h2>
+        <input class="task-input" type="text" placeholder="Add task name.." name="taskName" id="todoTask" />
+
+        <div class="input-btn-box">
+          <button class="add-btn">Add Task</button>
         </div>
       </div>
-      <div class="app-weekday">Monday</div>
-    </header>
+    </div>
 
-    <ul class="todo-list">
-      <li class="todo-item">
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-        <i class="fas fa-check"></i>
-      </li>
-    </ul>
-  </main>
-
-  <script src="./index.js"></script>
-</body>
+    <script src="./index.js"></script>
+  </body>
 </html>

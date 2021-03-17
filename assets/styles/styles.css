@@ -6,6 +6,7 @@
 }
 
 .app-container {
+  position: relative;
   width: 380px;
   height: 600px;
   margin-top: 5rem;
@@ -13,6 +14,7 @@
   padding-bottom: 80px;
   box-shadow: #c9c9c9 0px 4px 13px 2px;
   background-color: #ffffff;
+  color: #605959;
 }
 
 .app-header {
@@ -20,6 +22,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
+  text-transform: uppercase;
 }
 
 .app-date {
@@ -28,10 +31,170 @@
 }
 
 .app-date > div:first-of-type {
-  font-size: 2.1rem;
+  font-size: 2.3rem;
+  margin-right: 0.3rem;
 }
 
 .app-date > div:last-of-type {
   display: flex;
   flex-direction: column;
+}
+
+.app-date > div:last-of-type > span:last-of-type {
+  font-weight: 300; 
+  /* for presentation purpose only */
+}
+
+.app-weekday {
+  font-size: 0.8rem;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1px grey solid;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: 250ms all;
+}
+
+.icon-wrapper:hover {
+  border-color: greenyellow;
+  color: greenyellow;
+}
+
+.todo-item.completed {
+  color: lightgray;
+}
+
+.todo-item.completed > .icon-wrapper {
+  border-color: greenyellow;
+  color: greenyellow;
+}
+
+.todo-item.completed > .icon-wrapper:hover {
+  color: grey;
+  border-color: grey;
+}
+
+.add-task-btn {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  background-color: #6ad931;
+  color: green;
+  font-size: 1.4rem;
+  transform: translate(-50%, 50%);
+  box-shadow: #bababa 3px 6px 8px 0px;
+  transition: 250ms filter;
+}
+
+.add-task-btn:hover {
+  filter: brightness(1.1);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(1px);
+  animation-name: fadeIn;
+  animation-duration: 250ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+}
+
+.modal-container {
+  position: relative;
+  width: 500px;
+  height: 280px;
+  padding: 20px;
+  margin-top: 5rem;
+  background-color: rgba(255,255,245);
+  animation-name: slideIn;
+  animation-duration: 150ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+}
+
+.hidden {
+  display: none;
+}
+
+.close-btn {
+  position: absolute;
+  right: 1.2rem;
+  top: 1.2rem;
+  color: grey;
+}
+
+.add-task-header {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  font-weight: 300;
+  letter-spacing: 0.2px;
+}
+
+.task-input {
+  width: 100%;
+  border-bottom: 1px grey solid;
+  font-size: 1rem;
+}
+
+.input-btn-box {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.add-btn {
+  padding: 0.2rem 0.4rem;
+  color: #ffffff;
+  background-color: #36d336;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(1.5rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
