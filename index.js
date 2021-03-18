@@ -1,4 +1,4 @@
-const allTasks = [];
+let allTasks = [];
 
 const setCurrentDate = () => {
   const dayMonthElement = document.getElementById('dayMonth');
@@ -42,11 +42,24 @@ const createTaskTemplate = (task) => {
   return template;
 }
 
-const addToogleEventToListElement = () => {
+const toggleTaskState = (id) => {
+  allTasks = allTasks.map((task) => {
+    if (task.id === id) {
+      task.completed = !task.completed;
+    }
+    return task;
+  });
+
+  console.log(allTasks);
+}
+
+const addTogleEventToListElement = () => {
   const allButtons = document.querySelectorAll('.icon-wrapper');
+  
   allButtons.forEach((btn) => {
     btn.addEventListener('click', (event) => {
-      console.log(event.target.dataset.id);
+      const taskId = event.target.dataset.id;
+      toggleTaskState(taskId);
     })
   })
 }
@@ -59,7 +72,7 @@ const renderTasks = () => {
   })
 
   todosListElement.innerHTML = tasksTemplate.join('');
-  addToogleEventToListElement();
+  addTogleEventToListElement();
 }
 
 const checkIfTaskExists = (taskName) => { // Return Boolean
