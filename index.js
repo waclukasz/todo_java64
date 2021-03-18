@@ -25,16 +25,30 @@ const toggleModal = () => {
 const createTaskTemplate = (task) => {
   const template = `
     <li 
-      id="${task.id}"
       class="todo-item ${task.completed && 'completed'}"
     >
       <p>${task.name}</p>
-      <div class="icon-wrapper">
-        <i class="fas fa-check"></i>
+      <div
+        data-id="${task.id}"
+        class="icon-wrapper"
+      >
+        <i
+          data-id="${task.id}"
+          class="fas fa-check"
+        ></i>
       </div>
     </li>
   `
   return template;
+}
+
+const addToogleEventToListElement = () => {
+  const allButtons = document.querySelectorAll('.icon-wrapper');
+  allButtons.forEach((btn) => {
+    btn.addEventListener('click', (event) => {
+      console.log(event.target.dataset.id);
+    })
+  })
 }
 
 const renderTasks = () => {
@@ -44,13 +58,32 @@ const renderTasks = () => {
     return createTaskTemplate(task)
   })
 
-  console.log(tasksTemplate);
   todosListElement.innerHTML = tasksTemplate.join('');
+  addToogleEventToListElement();
+}
+
+const checkIfTaskExists = (taskName) => { // Return Boolean
+  const filteredTasks = allTasks.filter((task) => {
+    return task.name === taskName;
+  })
+
+  return filteredTasks.length;
 }
 
 const addNewTask = () => {
   const inputTaskElement = document.getElementById('todoTask');
-  const taskName = inputTaskElement.value;
+  let taskName = inputTaskElement.value;
+  taskName = taskName.trim();
+
+  if (!taskName) {
+    alert('You should type a task');
+    return; // end executing if true
+  }
+
+  if (checkIfTaskExists(taskName)) {
+    alert('This task already exists');
+    return;
+  }
 
   const newTaskModel = {
     name: taskName,
@@ -60,6 +93,9 @@ const addNewTask = () => {
 
   allTasks.push(newTaskModel);
   renderTasks();
+  inputTaskElement.value = null; 
+  toggleModal();
+  
 }
 
 document.querySelector('.add-task-btn').addEventListener('click', toggleModal);
