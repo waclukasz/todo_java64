@@ -41,7 +41,7 @@
 }
 
 .app-date > div:last-of-type > span:last-of-type {
-  font-weight: 300; 
+  font-weight: 300;
   /* for presentation purpose only */
 }
 
@@ -132,7 +132,7 @@
   height: 280px;
   padding: 20px;
   margin-top: 5rem;
-  background-color: rgba(255,255,245);
+  background-color: rgba(255, 255, 245);
   animation-name: slideIn;
   animation-duration: 150ms;
   animation-fill-mode: forwards;
@@ -177,6 +177,23 @@
   border-radius: 4px;
   font-size: 1.1rem;
   font-weight: 300;
+}
+
+.todo-icons {
+  display: flex;
+  align-items: center;
+}
+
+.trash-btn {
+  display: none;
+  margin-right: 8px;
+  font-size: 1.1rem;
+  color: red;
+  cursor: pointer;
+}
+
+.todo-item.completed .trash-btn {
+  display: inline-block;
 }
 
 @keyframes fadeIn {

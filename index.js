@@ -1,4 +1,7 @@
+const savedTasks = localStorage.getItem('allTasks');
 let allTasks = [];
+
+
 
 const setCurrentDate = () => {
   const dayMonthElement = document.getElementById('dayMonth');
@@ -28,14 +31,21 @@ const createTaskTemplate = (task) => {
       class="todo-item ${task.completed && 'completed'}"
     >
       <p>${task.name}</p>
-      <div
-        data-id="${task.id}"
-        class="icon-wrapper"
-      >
-        <i
+      <div class="todo-icons">
+        <i 
           data-id="${task.id}"
-          class="fas fa-check"
-        ></i>
+          class="far fa-trash-alt trash-btn"
+        >
+        </i>
+        <div
+          data-id="${task.id}"
+          class="icon-wrapper"
+        >
+          <i
+            data-id="${task.id}"
+            class="fas fa-check"
+          ></i>
+        </div>
       </div>
     </li>
   `
@@ -50,7 +60,26 @@ const toggleTaskState = (id) => {
     return task;
   });
 
-  console.log(allTasks);
+  renderTasks();
+  localStorage.setItem('allTasks', JSON.stringify(allTasks));
+}
+
+const removeTask = (id) => {
+  allTasks = allTasks.filter((task) => task.id !== id);
+
+  renderTasks();
+  localStorage.setItem('allTasks', JSON.stringify(allTasks));
+}
+
+const addRemoveTaskEvent = () => {
+  const trashBtns = document.querySelectorAll('.trash-btn');
+  trashBtns.forEach((btn) => {
+    btn.addEventListener('click', (event) => {
+      const taskId = event.target.dataset.id;
+      removeTask(taskId);
+    })
+  })
+
 }
 
 const addTogleEventToListElement = () => {
@@ -73,6 +102,7 @@ const renderTasks = () => {
 
   todosListElement.innerHTML = tasksTemplate.join('');
   addTogleEventToListElement();
+  addRemoveTaskEvent();
 }
 
 const checkIfTaskExists = (taskName) => { // Return Boolean
@@ -105,14 +135,32 @@ const addNewTask = () => {
   };
 
   allTasks.push(newTaskModel);
+  localStorage.setItem('allTasks', JSON.stringify(allTasks));
+
   renderTasks();
   inputTaskElement.value = null; 
   toggleModal();
   
 }
 
+if (savedTasks) {
+  allTasks = JSON.parse(savedTasks);
+  renderTasks();
+}
+
 document.querySelector('.add-task-btn').addEventListener('click', toggleModal);
 document.querySelector('.close-btn').addEventListener('click', toggleModal);
 document.querySelector('.add-btn').addEventListener('click', addNewTask)
+document.getElementById('todoTask').addEventListener('keyup', (event) => {
+  if (event.key === 'Enter') {
+    addNewTask();
+  } 
+})
+
+document.addEventListener('keyup', (event) => {
+  if (event.key === 'Escape') {
+    toggleModal();
+  }
+})
 
 setCurrentDate();
